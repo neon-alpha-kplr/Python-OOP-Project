@@ -1,5 +1,4 @@
-# nous allons a présent utiliser la classe Tree de la librairie treelib pour construire un arbdre de donnée
-
+# Nous allons a présent utiliser la classe Tree de la librairie treelib pour construire un arbdre de donnée
 from treelib import Tree
 
 def create_tree_from_dict(tree, parent_node_id, parent_dict):
