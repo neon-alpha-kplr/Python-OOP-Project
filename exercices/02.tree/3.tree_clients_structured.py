@@ -1,4 +1,4 @@
-# A présent organisons un peu le code. 
+# A présent organisons un peu le code.
 # Nous allons utiliser des méthodes et fonctions pour isolers les modules
 
 """Ce code est un exemple d'utilisation de fonctions et de méthodes pour organiser le code et le rendre plus lisible. 
