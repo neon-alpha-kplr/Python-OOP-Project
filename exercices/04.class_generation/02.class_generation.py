@@ -43,9 +43,6 @@ def generate_class_def(nom_classe: str, attributs: dict, nom_superclasse: str, a
             definition_constructeur += f"\n\t\tself.{nom_attribut} = {nom_attribut}" # ajouter une ligne au code de définition du constructeur pour initialiser l'attribut
 
     """
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     Si l'attribut est `name` et que la classe est une classe `Product`, 
     la fonction ajoute également une ligne de code pour initialiser `self.name` avec le nom de la classe. 
     """
