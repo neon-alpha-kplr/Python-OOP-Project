@@ -1,7 +1,8 @@
 # Import des modules nécessaires
 import json
+import os
+from class_generation import generate_class_def
 from unidecode import unidecode
-import re
 
 # Charger des données JSON à partir du fichier dans un dictionnaire python
 local_path = os.path.dirname(os.path.abspath(__file__))
@@ -24,20 +25,25 @@ Elle prend les arguments suivant:
     - superclass_name : une chaîne de caractères représentant le nom de la classe parente. Par défaut, sa valeur est None pour la racine de la hiérarchie.
     - superclass_args : une liste des arguments des arguments de la classe mère à passer à la classe fille.
 """
-def generate_class_hierarchy(json_dict :dict, superclass_name:str=None,superclass_args:list=[]):
+def generate_class_hierarchy(json_dict :dict, superclass_name:str=None, superclass_args:list=[]):
     # Initialisation de la chaîne de caractères contenant les définitions de classes
     class_defs = ""
-
+    for class_name, class_attrs in json_dict.items():
+        print(class_name)
+        print(class_attrs)
+        class_def=generate_class_def(class_name, class_attrs, superclass_name, superclass_args)
+        class_defs+=class_def
+        if isinstance(class_attrs, dict) & ('subclasses' in class_attrs.keys()):
+            print('subclasses found : ' + class_def)
+    return class_defs
     """ 
-    Itération sur les éléments du dictionnaire
-    pour chaque nom de classe (class_name) et attribut de cette dernière (class_attrs) dans les éléments de  json_dict, faire:
-
-        - Générer la définition de la classe avec la méthode generate_class_def() en passant les arguments superclass_name et superclass_args comme entrées
-        - le résultat de la méthode generate_class_def() est stocker dans une variable 'class_def'
-        - Concaténer la définition de la classe à la chaîne de caractères class_defs
-  
-        - Ensuite, vérifier la présence des sous-classes dans la classe courante
-        - Si "subclasses" existe parmi les attributs de la classe courante, faire:
+    <Itération sur les éléments du dictionnaire
+    <pour chaque nom de classe (class_name) et attribut de cette dernière (class_attrs) dans les éléments de  json_dict, faire:
+    <    - Générer la définition de la classe avec la méthode generate_class_def() en passant les arguments superclass_name et superclass_args comme entrées
+    <    - le résultat de la méthode generate_class_def() est stocké dans une variable 'class_def'
+    <    - Concaténer la définition de la classe à la chaîne de caractères class_defs
+    <    - Ensuite, vérifier la présence des sous-classes dans la classe courante
+    <    - Si "subclasses" existe parmi les attributs de la classe courante, faire:
                 -Construire une liste "super_attr" contenant les attributs de la classe courante concaténées aux arguments de la superclasse
                 -Puis, supprimer l'attribut 'subclasses' à partir de la liste créée
 
@@ -68,3 +74,6 @@ def write_content(content,filename):
 # Appeler la méthode generate_class_hierarchy pour générer le code des classes automatiquement en se basant sur le dictionnaire json_dict
 # Stocker le résultat de la classe dans une variable
 # Appeler la fonction write_content pour stocker le code des classes dans un fichier Python 'product_classes.py'
+
+print(json_dict)
+generate_class_hierarchy(json_dict)
