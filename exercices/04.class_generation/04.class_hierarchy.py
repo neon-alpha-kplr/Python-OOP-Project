@@ -33,8 +33,12 @@ def generate_class_hierarchy(json_dict :dict, superclass_name:str=None, supercla
         print(class_attrs)
         class_def=generate_class_def(class_name, class_attrs, superclass_name, superclass_args)
         class_defs+=class_def
-        if isinstance(class_attrs, dict) & ('subclasses' in class_attrs.keys()):
-            print('subclasses found : ' + class_def)
+        if isinstance(class_attrs, dict):
+            if 'subclasses' in class_attrs.keys():
+                print('subclasses found : ' + class_def)
+            
+            for attr in class_attrs.keys():
+                print(attr)
     return class_defs
     """ 
     <Itération sur les éléments du dictionnaire
