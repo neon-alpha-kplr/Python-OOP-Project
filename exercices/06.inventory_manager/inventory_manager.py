@@ -28,7 +28,7 @@ class InventoryManager:
     La méthode add_product est utilisée pour ajouter un nouveau produit à l'inventaire.
     Elle prend en argument un objet Product et une quantité initiale.
     """
-    def add_product(self, product:Product, quantity):
+    def add_product(self, product:Product, quantity:int=0):
         # SI le produit existe déjà dans l'inventaire: 
         if self.product_exists(product):
             # Afficher un message pour informer l'utilisateur
@@ -117,11 +117,31 @@ class InventoryManager:
             print(inventory_product_entry_key)
         # Retourner le dictionnaire inventaire
         return self.inventory
+    
+import json
+import os
+from unidecode import unidecode
+
+def import_inventory_data_from_json(inventory_manager, filename):
+    local_path = os.path.dirname(os.path.abspath(__file__))
+    json_data = json.load(open(os.path.join(local_path, filename), "rb"))
+    json_str = json.dumps(json_data)
+    json_data = unidecode(json_str)
+    json_dict = json.loads(json_data)
+    
+    product_classes_module=__import__('product_classes')
+    product_classes={}
+    for product in json_dict.items():
+        if not product[0] in product_classes:
+            product_classes[product[0]]=getattr(product_classes_module,product[0])
+        product_instance=product_classes[product[0]]()
+        inventory_manager.add_product(product_instance,product[1]['quantity'])
 
 if __name__ == '__main__':
     myIM=InventoryManager()
-    myIM.add_product(Canape("Cuir","Beige","180x90x80",550,1230,"COMFORTLINE"),10)
-    myIM.add_product(Chaise("Bois","Pin","50x50x110",550,1230,"COMFORTLINE"),30)
-    myIM.add_product(Canape("Tissu","Bleu azur","2000x100x86",550,1230,"COMFORTLINE"),15)
-    myIM.add_product(Chaussures(42,31,55,"GEMO"),120)
+    #myIM.add_product(Canape("Cuir","Beige","180x90x80",550,1230,"COMFORTLINE"),10)
+    #myIM.add_product(Chaise("Bois","Pin","50x50x110",550,1230,"COMFORTLINE"),30)
+    #myIM.add_product(Canape("Tissu","Bleu azur","2000x100x86",550,1230,"COMFORTLINE"),15)
+    #myIM.add_product(Chaussures(42,31,55,"GEMO"),120)
+    #import_inventory_data_from_json(myIM, "products.json")
     myIM.list_products()
