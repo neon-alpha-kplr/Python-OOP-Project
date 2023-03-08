@@ -45,7 +45,6 @@ def json_dict_from_file():
 def create_tree_from_dict(json_dict):
     tree = Tree()
     tree.create_node(tag="Product Classes Hierarchy", identifier="root")
-    print(type(json_dict))
     tree = recursive_tree_from_json(tree, 'root', json_dict)
     return tree
 

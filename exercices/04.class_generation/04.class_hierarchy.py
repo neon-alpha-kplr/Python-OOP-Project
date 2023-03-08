@@ -45,9 +45,10 @@ def generate_class_hierarchy(json_dict :dict, superclass_name:str=None, supercla
             if 'subclasses' in class_attrs.keys():
                 #print('subclasses found : ' + class_def)
                 # Construire une liste "super_attr" contenant les attributs de la classe courante concaténées aux arguments de la superclasse
-                super_attr=superclass_args[:]
+                """super_attr=superclass_args[:]
                 for attr in class_attrs.keys():
-                    super_attr.append(attr)
+                    super_attr.append(attr)"""
+                super_attr = (list(class_attrs.keys())+superclass_args)
                 # Puis, supprimer l'attribut 'subclasses' à partir de la liste créée
                 super_attr.remove('subclasses')
                 # Ensuite, faire une récursion pour générer la définition de la sous-classe en utilisant la méthode generate_class_hierarchy
@@ -71,10 +72,11 @@ def write_content(content, filename):
     with open(filename, "w", encoding='utf-8') as f:
         f.write(content)
 
-# Appeler la méthode generate_class_hierarchy pour générer le code des classes automatiquement en se basant sur le dictionnaire json_dict
-# Stocker le résultat de la classe dans une variable
-classes=generate_class_hierarchy(json_dict)
+if __name__ == '__main__':
+    # Appeler la méthode generate_class_hierarchy pour générer le code des classes automatiquement en se basant sur le dictionnaire json_dict
+    # Stocker le résultat de la classe dans une variable
+    classes=generate_class_hierarchy(json_dict)
 
-# Appeler la fonction write_content pour stocker le code des classes dans un fichier Python 'product_classes.py'
-local_path = os.path.dirname(os.path.abspath(__file__))
-write_content(classes,os.path.join(local_path, 'product_classes.py'))
+    # Appeler la fonction write_content pour stocker le code des classes dans un fichier Python 'product_classes.py'
+    local_path = os.path.dirname(os.path.abspath(__file__))
+    write_content(classes,os.path.join(local_path, 'product_classes.py'))
