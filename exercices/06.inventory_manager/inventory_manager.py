@@ -129,12 +129,13 @@ def import_inventory_data_from_json(inventory_manager, filename):
     json_data = unidecode(json_str)
     json_dict = json.loads(json_data)
     
-    product_classes_module=__import__('product_classes')
+    product_classes_module=__import__('product_classes_list')
     product_classes={}
     for product in json_dict.items():
-        if not product[0] in product_classes:
-            product_classes[product[0]]=getattr(product_classes_module,product[0])
-        product_instance=product_classes[product[0]]()
+        if not product[1]['type'] in product_classes:
+            product_classes[product[1]['type']]=getattr(product_classes_module,product[1]['type'])
+        args=list(product[1].values())
+        product_instance=product_classes[product[1]['type']](args[1:-1])
         inventory_manager.add_product(product_instance,product[1]['quantity'])
 
 if __name__ == '__main__':
@@ -143,5 +144,5 @@ if __name__ == '__main__':
     #myIM.add_product(Chaise("Bois","Pin","50x50x110",550,1230,"COMFORTLINE"),30)
     #myIM.add_product(Canape("Tissu","Bleu azur","2000x100x86",550,1230,"COMFORTLINE"),15)
     #myIM.add_product(Chaussures(42,31,55,"GEMO"),120)
-    #import_inventory_data_from_json(myIM, "products.json")
+    import_inventory_data_from_json(myIM, "products.json")
     myIM.list_products()
