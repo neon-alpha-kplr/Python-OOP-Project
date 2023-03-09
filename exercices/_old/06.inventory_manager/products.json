@@ -1,0 +1,20 @@
+{
+    "c_cfl550":{"type":"Canape","cost":550,"price":1230,"marque":"COMFORTLINE","materiau":"Cuir","couleur":"Beige","dimensions":"180x90x80","quantity":10},
+    "c_cfl700":{"type":"Canape","cost":700,"price":1590,"marque":"COMFORTLINE","materiau":"Tissu","couleur":"Bleu azur","dimensions":"200x100x86","quantity":15},
+    "c_cfl34":{"type":"Chaise","cost":34,"price":60,"marque":"COMFORTLINE","materiau":"Bois","couleur":"Hêtre","dimensions":"50x50x110","quantity":30},
+    "c_ucfl300":{"type":"Canape","cost":300,"price":500,"marque":"UNCOMFORTLINE","materiau":"Cheap","couleur":"Violet","dimensions":"100x90x80","quantity":3},
+    "t_cfl500":{"type":"Table","cost":500,"price":850,"marque":"COMFORTLINE","materiau":"Bois","couleur":"Chêne","dimensions":"80x160x80","quantity":12},
+    "t_ucfl20":{"type":"Table","cost":20,"price":150,"marque":"UNCOMFORTLINE","materiau":"Cheap","couleur":"Arc-en-ciel","dimensions":"80x120x80","quantity":27},
+    "c_cfl12":{"type":"Chaise","cost":12,"price":30,"marque":"COMFORTLINE","materiau":"Bois","couleur":"Pin","dimensions":"50x50x130","quantity":20},
+    "c_ucfl5":{"type":"Chaise","cost":5,"price":30,"marque":"UNCOMFORTLINE","materiau":"Cheap","couleur":"Pâte à modeler","dimensions":"50x50x110","quantity":300},
+    "r_s310":{"type":"Refrigerateur","cost":310,"price":550,"marque":"SAMSUNG","capacite":"200","efficacite":"A+","quantity":12},
+    "r_f88":{"type":"Refrigerateur","cost":88,"price":200,"marque":"FAKE","capacite":"150","efficacite":"C-","quantity":23},
+    "lv_f62":{"type":"Lave_vaisselle","cost":62,"price":190,"marque":"FAKE","capacite":"100","programme":"C+","quantity":2},
+    "c_g31":{"type":"Chaussures","cost":31,"price":55,"marque":"GEMO","pointure":42,"quantity":150},
+    "c_t1242":{"type":"Chaussures","cost":12,"price":25,"marque":"TEX","pointure":42,"quantity":600},
+    "c_t1240":{"type":"Chaussures","cost":12,"price":25,"marque":"TEX","pointure":40,"quantity":500},
+    "c_t1238":{"type":"Chaussures","cost":12,"price":25,"marque":"TEX","pointure":38,"quantity":620},
+    "c_r3538":{"type":"Chaussures","cost":35,"price":80,"marque":"REEBOK","pointure":38,"quantity":120},
+    "c_r3537":{"type":"Chaussures","cost":35,"price":80,"marque":"REEBOK","pointure":37,"quantity":120},
+    "c_r3536":{"type":"Chaussures","cost":35,"price":80,"marque":"REEBOK","pointure":36,"quantity":120}
+}

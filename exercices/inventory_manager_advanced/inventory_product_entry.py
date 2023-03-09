@@ -1,4 +1,8 @@
-from product_classes import Product, Biens_Consommation, Articles_Menagers, Meubles, Canape, Chaise, Table, Appareils_Electromenagers, Refrigerateur, Lave_vaisselle, Lave_linge, Ustensiles_Cuisine, Casserole, Batterie_Cuisine, Habillement, Vetements, Haut, Pantalon, Robe, Casquette, Chaussures
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+from class_generation.product_classes import Product, Biens_Consommation, Articles_Menagers, Meubles, Canape, Chaise, Table, Appareils_Electromenagers, Refrigerateur, Lave_vaisselle, Lave_linge, Ustensiles_Cuisine, Casserole, Batterie_Cuisine, Habillement, Vetements, Haut, Pantalon, Robe, Casquette, Chaussures
 
 # Vous allez créer une classe InventoryProductEntry qui a pour role 
 # de représenter une entrée d'inventaire pour un produit spécifique.
@@ -24,7 +28,7 @@ class InventoryProductEntry:
     La méthode sell est utilisée pour retirer la quantité vendue du produit depuis le stock.
     Elle met également à jour les ventes totales pour le produit.
     """
-    def sell(self, quantity):
+    def sell(self, quantity, ghost_mode:bool=False):
         #Avant de mettre à jour l'état du stock du produit, on doit vérifier si on a déjà une quantité suffisante à vendre.
         # SI la quantité en stock est inférieure à la quantité demandée:
         # Afficher "Le stock du produit [nom du produit] est insuffisant."
@@ -33,10 +37,12 @@ class InventoryProductEntry:
             print(f"Le stock du produit {self.product.name} est insuffisant.")
             return False
         # SINON:
-        # Réduire la quantité en stock par la quantité demandée
-        # Ajouter le revenue total de la vente à la variable 'sales' en multipliant la quantité vendue par le prix du produit
-        # Retourner Vrai
         else:
+            # Si on est en ghost_mode, on veut simplement savoir que le stock de produits est suffisant sans le mettre à jour
+            if ghost_mode: return True
+            # Réduire la quantité en stock par la quantité demandée
+            # Ajouter le revenue total de la vente à la variable 'sales' en multipliant la quantité vendue par le prix du produit
+            # Retourner Vrai
             self.quantity-=quantity
             self.sales+=self.product.price*quantity
             return True
@@ -50,6 +56,7 @@ class InventoryProductEntry:
         self.quantity+=quantity
         # Ajouter le coût total de la nouvelle quantité reçue à la variable 'expenses' en multipliant la quantité reçue par le coût du produit
         self.expenses+=self.product.cost*quantity
+        return True
 
     """
     La méthode repr est utilisée pour fournir une représentation en chaîne de caractères de l'objet InventoryProductEntry, 
