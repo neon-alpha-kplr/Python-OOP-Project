@@ -1,8 +1,4 @@
-import os, sys
-currentdir = os.path.dirname(os.path.realpath(__file__))
-parentdir = os.path.dirname(currentdir)
-sys.path.append(parentdir)
-from class_generation.product_classes import Product, Biens_Consommation, Articles_Menagers, Meubles, Canape, Chaise, Table, Appareils_Electromenagers, Refrigerateur, Lave_vaisselle, Lave_linge, Ustensiles_Cuisine, Casserole, Batterie_Cuisine, Habillement, Vetements, Haut, Pantalon, Robe, Casquette, Chaussures
+from product_classes import Product, Biens_Consommation, Articles_Menagers, Meubles, Canape, Chaise, Table, Appareils_Electromenagers, Refrigerateur, Lave_vaisselle, Lave_linge, Ustensiles_Cuisine, Casserole, Batterie_Cuisine, Habillement, Vetements, Haut, Pantalon, Robe, Casquette, Chaussures
 
 # Vous allez créer une classe InventoryProductEntry qui a pour role 
 # de représenter une entrée d'inventaire pour un produit spécifique.
@@ -62,17 +58,17 @@ class InventoryProductEntry:
     La méthode repr est utilisée pour fournir une représentation en chaîne de caractères de l'objet InventoryProductEntry, 
     qui contient des informations utiles telles que le nom du produit, la marque, la quantité en stock et le prix du produit.
     """
-    def __repr__(self):
+    def repr(self):
         # Retourner une chaîne de caractères formatée contenant le nom du produit, la marque, la quantité en stock et le prix du produit.
         return f"{self.product.name} ({self.product.marque}) : {self.product.price}€ ({self.quantity} en stock)"
 
 if __name__ == '__main__':
     produit=Product(12,25,'Brandt')
     ipe=InventoryProductEntry(produit, 3)
-    print(ipe.__repr__())
+    print(ipe.repr())
     ipe.restock(13)
-    print(ipe.__repr__())
+    print(ipe.repr())
     ipe.sell(3)
-    print(ipe.__repr__())
+    print(ipe.repr())
     ipe.sell(31)
-    print(ipe.__repr__())
+    print(ipe.repr())

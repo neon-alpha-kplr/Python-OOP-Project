@@ -99,3 +99,4 @@ class Chaussures(Habillement):
 	def __init__(self, pointure, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.pointure = pointure
+

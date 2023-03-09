@@ -58,7 +58,7 @@ class TestInventoryManager(unittest.TestCase):
         """
         self.inventory_manager.add_product(self.pantalon,5)
         self.inventory_manager.sell_product(self.pantalon,2)
-        self.assertEqual(self.inventory_manager.get_product(self.pantalon.name).quantity,3)
+        self.assertEqual(self.inventory_manager.inventory[self.pantalon.name].quantity,3)
     
     # Test de la méthode restock_product de la classe InventoryManager
     def test_restock_product(self):
@@ -69,7 +69,7 @@ class TestInventoryManager(unittest.TestCase):
         """
         self.inventory_manager.add_product(self.chaise,10)
         self.inventory_manager.restock_product(self.chaise,5)
-        self.assertEqual(self.inventory_manager.get_product(self.chaise.name).quantity,15)
+        self.assertEqual(self.inventory_manager.inventory[self.chaise.name].quantity,15)
         
     # Test de la méthode get_product de la classe InventoryManager
     def test_get_product(self):
@@ -79,7 +79,7 @@ class TestInventoryManager(unittest.TestCase):
         -Vérification que la chaise récupérée est bien celle ajoutée précédemment avec la méthode assertEqual
         """
         self.inventory_manager.add_product(self.chaise,5)
-        chaise=self.inventory_manager.get_product(self.chaise.name).product
+        chaise=self.inventory_manager.get_product(self.chaise.name)
         self.assertEqual(chaise,self.chaise)
         
     # Test de la méthode list_products de la classe InventoryManager
@@ -91,8 +91,9 @@ class TestInventoryManager(unittest.TestCase):
         - Vérification que le premier résultat de la méthode list_products égal à la sortie attendue
         """
         self.inventory_manager.add_product(self.chaise,5)
+        self.inventory_manager.add_product(self.pantalon,10)
         liste=self.inventory_manager.list_products()
-        self.assertEqual(liste,"Chaise (Ikea), 50€/100€ (5 en stock) : 0€ de coût, 0€ de ventes\n")
+        self.assertEqual(liste,"Chaise (Ikea), 50€/100€ (5 en stock) : 0€ de coût, 0€ de ventes\nPantalon (Zara), 150€/200€ (10 en stock) : 0€ de coût, 0€ de ventes\n")
         
 # Exécuter le code     
 if __name__ == '__main__':

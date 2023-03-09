@@ -90,11 +90,11 @@ class InventoryManager:
     """
     def get_product(self, product_name):
         # Pour chaque inventory_product_entry_key dans self.inventory
-        for inventory_product_entry_key in self.inventory:
+        for ipe_key, ipe in self.inventory:
             # Si inventory_product_entry_key == nom de produit:
-            if inventory_product_entry_key==product_name:
+            if ipe_key==product_name:
                 # Retourner self.inventaire[inventory_product_entry_key].product
-                return self.inventory[inventory_product_entry_key]
+                return ipe.prodcuct
         # Afficher un message pour indiquer que le produit n'existe pas
         print("Le produit n'existe pas dans l'inventaire")
 

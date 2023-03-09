@@ -80,3 +80,4 @@ if __name__ == '__main__':
     # Appeler la fonction write_content pour stocker le code des classes dans un fichier Python 'product_classes.py'
     local_path = os.path.dirname(os.path.abspath(__file__))
     write_content(classes,os.path.join(local_path, 'product_classes.py'))
+    

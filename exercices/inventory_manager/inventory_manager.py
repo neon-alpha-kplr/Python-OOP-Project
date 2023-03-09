@@ -28,7 +28,7 @@ class InventoryManager:
                 return True
         # Retourner False
         return False"""
-        return product.name in self.inventory.keys()
+        return product.name in self.inventory
     
     """
     La méthode add_product est utilisée pour ajouter un nouveau produit à l'inventaire.
@@ -120,7 +120,7 @@ class InventoryManager:
             # Si inventory_product_entry_key == nom de produit:
             if ipe_key==product_name:
                 # Retourner self.inventaire[inventory_product_entry_key].product
-                return ipe
+                return ipe.product
         # Afficher un message pour indiquer que le produit n'existe pas
         print("Le produit n'existe pas dans l'inventaire")
 
@@ -148,18 +148,18 @@ if __name__ == '__main__':
     myIM.list_products()
     print(f"Balance comptable : {myIM.profit_tracker.balance}€")
     print(">Vente de 3 chaises...")
-    myIM.sell_product(myIM.get_product('Chaise').product,3)
+    myIM.sell_product(myIM.get_product('Chaise'),3)
     print(f"Balance comptable : {myIM.profit_tracker.balance}€")
     print(">Achat de 9 tables...")
     myIM.restock_product(Table("Bois","Hêtre","200x100x8",550,990,"COMFORTLINE"),9)
     print(f"Balance comptable : {myIM.profit_tracker.balance}€")
     print(">Vente de 1000 paires de chaussures...")
-    myIM.sell_product(myIM.get_product('Chaussures').product,1000)
+    myIM.sell_product(myIM.get_product('Chaussures'),1000)
     print(f"Balance comptable : {myIM.profit_tracker.balance}€")
     print(">Vente de 100 paires de chaussures...")
-    myIM.sell_product(myIM.get_product('Chaussures').product,100)
+    myIM.sell_product(myIM.get_product('Chaussures'),100)
     print(f"Balance comptable : {myIM.profit_tracker.balance}€")
     print(">Achat de 9 tables...")
-    myIM.restock_product(myIM.get_product('Table').product,9)
+    myIM.restock_product(myIM.get_product('Table'),9)
     myIM.list_products()
     print(f"Balance comptable : {myIM.profit_tracker.balance}€")
